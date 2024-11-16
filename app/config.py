@@ -4,3 +4,4 @@ load_dotenv(find_dotenv())
 
 
 MONGODB_URL = environ['MONGODB_URL']
+MONGODB_NAME = environ['MONGODB_NAME']

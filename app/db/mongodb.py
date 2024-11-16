@@ -5,7 +5,7 @@ class MongoClient:
     _client: AsyncIOMotorClient = None
 
     @classmethod
-    def get_db(cls):
+    def get_client(cls):
         if cls._client is None:
             _client = AsyncIOMotorClient(MONGODB_URL)
         return _client

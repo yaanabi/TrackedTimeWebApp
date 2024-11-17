@@ -15,6 +15,10 @@ class BaseRepository(ABC):
     @abstractmethod
     async def get_all(self, limit: int = 100) -> List[pydantic.BaseModel]:
         pass
+    
+    @abstractmethod
+    async def create(self, data: pydantic.BaseModel) -> pydantic.BaseModel:
+        pass
 
     @abstractmethod
     async def update(self, id: str, data: pydantic.BaseModel) -> pydantic.BaseModel:

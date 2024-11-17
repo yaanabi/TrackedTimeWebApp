@@ -31,8 +31,8 @@ class TrackedTimeIn(TrackedTimeBase):
 
 
 class TrackedTimeOut(TrackedTimeBase):
-    user_id: PyObjectId = Field(
-        default='None', description='User id related to this tracked time')
+    # user_id: PyObjectId = Field(
+    #     description='User id related to this tracked time')
     created_at: datetime = Field(default_factory=lambda: datetime.now())
 
     class Config:

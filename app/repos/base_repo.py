@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import List
+from motor.motor_asyncio import AsyncIOMotorCollection
 import pydantic
 
 
 class BaseRepository(ABC):
+    def __init__(self, collection: AsyncIOMotorCollection):
+        self._collection = collection
 
     @abstractmethod
     async def get_by_id(self, id: str) -> pydantic.BaseModel:

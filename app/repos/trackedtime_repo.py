@@ -1,12 +1,12 @@
 from motor.motor_asyncio import AsyncIOMotorCollection
 from typing import List
 
-from .base_repo import BaseRepository
+from .base_repo import BaseRepositoryOperations
 from schemas.utils_schema import PyObjectId
 from schemas.trackedtime_schemas import TrackedTimeOut, TrackedTimeIn
 
 
-class TrackedTimeRepository(BaseRepository):
+class TrackedTimeMongoRepository(BaseRepositoryOperations):
 
     def __init__(self, collection: AsyncIOMotorCollection):
         self._collection = collection
@@ -31,7 +31,7 @@ class TrackedTimeRepository(BaseRepository):
         '''
         # TODO: Add user_id
         document = data.model_dump(by_alias=True)
-        # document['user_id'] = user_id 
+        # document['user_id'] = user_id
         document = TrackedTimeOut(**document).model_dump(by_alias=True)
         result = await self._collection.insert_one(document)
         if not result.acknowledged:

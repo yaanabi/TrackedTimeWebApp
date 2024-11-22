@@ -1,8 +1,8 @@
 from db.mongodb import DATABASE
-from repos.trackedtime_repo import TrackedTimeRepository
+from repos.trackedtime_repo import TrackedTimeMongoRepository
 
 collections = {
-    'trackedtime': TrackedTimeRepository(DATABASE['trackedtime']),
+    'trackedtime': TrackedTimeMongoRepository(DATABASE['trackedtime']),
 }
 
 

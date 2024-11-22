@@ -6,9 +6,9 @@ from core.config import MONGODB_URL
 class MongoClient:
     __client: AsyncIOMotorClient = None
     __instance = None
-    
-    # Don't really need instances, bc im using class methods, but just in case added it 
-    def __new__(cls, *args, **kwargs): 
+
+    # Don't really need instances, bc im using class methods, but just in case added it. Yes its bad practice, YAGNI bla bla, who cares
+    def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)
         return cls.__instance

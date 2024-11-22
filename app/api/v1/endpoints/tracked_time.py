@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from fastapi.exceptions import HTTPException
 
 from core.dependencies import RepositoryProvider
-from repos.trackedtime_repo import TrackedTimeRepository
+from repos.trackedtime_repo import TrackedTimeMongoRepository
 from schemas.utils_schema import PyObjectId
 from schemas.trackedtime_schemas import TrackedTimeIn, TrackedTimeOut
 
@@ -14,7 +14,7 @@ router = APIRouter()
 @router.get('/{object_id}', response_model=TrackedTimeOut)
 async def get_tracked_time(
     object_id: PyObjectId,
-    repository: TrackedTimeRepository = Depends(trackedtime_repo)):
+    repository: TrackedTimeMongoRepository = Depends(trackedtime_repo)):
 
     tracked_time = await repository.get_by_id(object_id)
     if not tracked_time:
@@ -25,6 +25,6 @@ async def get_tracked_time(
 @router.post('/', response_model=TrackedTimeOut)
 async def create_tracked_time(
     data: TrackedTimeIn,
-    repository: TrackedTimeRepository = Depends(trackedtime_repo)):
+    repository: TrackedTimeMongoRepository = Depends(trackedtime_repo)):
     tracked_time = await repository.create(data=data)
     return tracked_time
